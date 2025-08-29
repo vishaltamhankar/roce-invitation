@@ -15,9 +15,42 @@
       margin: 0;
       font-family: 'Open Sans', sans-serif;
       background:
-        url('https://www.transparenttextures.com/patterns/flowers.png') no-repeat center center/cover,
+        linear-gradient(120deg, #fffaf0 0%, #f3e5f5 100%) fixed,
+        url('https://www.transparenttextures.com/patterns/flowers.png') repeat,
         #fffaf0;
+      background-blend-mode: lighten;
       background-repeat: repeat, no-repeat;
+      position: relative;
+      overflow-x: hidden;
+      color: #111;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(270deg, #fffaf0 0%, #f3e5f5 50%, #fffaf0 100%);
+      opacity: 0.5;
+      animation: bgMove 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 100% 50%;
+      }
+
       overflow-x: hidden;
       color: #111;
       font-size: 16px;
