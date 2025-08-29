@@ -25,34 +25,29 @@
 
     .container {
       background-attachment: fixed;
-
-      @media (max-width: 900px) {
-        .container {
-          background-attachment: scroll;
-        }
-      }
-
-      transition: box-shadow 0.3s cubic-bezier(.4, 0, .2, 1),
-      background 0.3s cubic-bezier(.4, 0, .2, 1);
+      transition: box-shadow 0.3s cubic-bezier(.4, 0, .2, 1), background 0.3s cubic-bezier(.4, 0, .2, 1);
       box-sizing: border-box;
-      border: 10px solid #f3e5f5;
+      border: 2.5px solid #d4af37;
+      border-radius: 28px;
       padding: 100px 32px 40px 32px;
       margin: 40px auto;
       max-width: 600px;
-      background-color: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.10),
-      0 1.5px 8px 0 rgba(0, 0, 0, 0.08);
-      background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),
-      url('C2.jpg') center center/cover no-repeat;
+      background: linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.35)), url('C2.jpg') center center/cover no-repeat;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
       background-blend-mode: lighten;
       position: relative;
       z-index: 1;
-      color: #111;
-      text-shadow: 0 2px 8px #fff,
-      0 0 8px #0006;
+      color: #222;
+      text-shadow: 0 2px 8px #fff, 0 0 8px #0004;
+      box-shadow: 0 8px 32px 0 rgba(44, 44, 44, 0.18), 0 2px 8px 0 rgba(212,175,55,0.10);
+      backdrop-filter: blur(8px) saturate(1.2);
+      animation: fadeInContainer 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeInContainer {
+      from { opacity: 0; transform: translateY(40px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     @media (max-width: 900px) {
@@ -124,9 +119,9 @@
     }
 
     h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2em;
-      color: #111;
+      font-family: 'Lora', serif;
+      font-size: 1.18em;
+      color: #333;
       margin: 10px 0;
       text-shadow: 0 2px 8px #fff, 0 0 8px #000a;
     }
@@ -316,13 +311,14 @@
       }
     }
 
-    @media (max-width: 480px) {
-
-      .responsive-abs-image,
-      .right-img {
-        height: 90px;
+    @media (max-width: 900px) {
+      .container {
+        max-width: 98vw;
+        padding: 60px 8px 24px 8px;
+        margin: 16px auto;
+        border-radius: 22px;
       }
-
+    }
       .bells-img {
         max-width: 110px;
       }
@@ -330,7 +326,6 @@
       .images-wrapper {
         height: 130px;
       }
-    }
 
     /* Modal */
     .modal {
@@ -394,18 +389,16 @@
       }
     }
 
-    @media (max-width: 768px) {
-      .background {
-        position: absolute !important;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
-        z-index: -2;
-        /* prevents zoom issue on mobile by avoiding fixed positioning */
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100vw;
+        padding: 32px 2vw 12px 2vw;
+        margin: 64px auto 4px auto;
+        box-sizing: border-box;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 16px;
+        border-width: 2px;
       }
     }
   </style>
