@@ -21,6 +21,8 @@
       overflow-x: hidden;
       color: #111;
       font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -32,7 +34,7 @@
       padding: 100px 32px 40px 32px;
       margin: 40px auto;
       max-width: 600px;
-      background: linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.35)), url('C2.jpg') center center/cover no-repeat;
+      background: linear-gradient(rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 0.35)), url('C2.jpg') center center/cover no-repeat;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
@@ -41,13 +43,21 @@
       z-index: 1;
       color: #222;
       text-shadow: 0 2px 8px #fff, 0 0 8px #0004;
-      box-shadow: 0 8px 32px 0 rgba(44, 44, 44, 0.18), 0 2px 8px 0 rgba(212,175,55,0.10);
+      box-shadow: 0 6px 32px 0 rgba(44, 44, 44, 0.13), 0 1.5px 8px 0 rgba(212, 175, 55, 0.08), 0 1.5px 24px 0 rgba(44, 44, 44, 0.06);
       backdrop-filter: blur(8px) saturate(1.2);
-      animation: fadeInContainer 1.2s cubic-bezier(.4,0,.2,1);
+      animation: fadeInContainer 1.2s cubic-bezier(.4, 0, .2, 1);
     }
+
     @keyframes fadeInContainer {
-      from { opacity: 0; transform: translateY(40px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     @media (max-width: 900px) {
@@ -107,7 +117,8 @@
     section {
       text-align: center;
       animation: fadeInUp 1.5s ease-in;
-      padding: 30px 0;
+      padding: 44px 0 36px 0;
+      margin-bottom: 32px;
     }
 
 
@@ -146,7 +157,7 @@
       cursor: pointer;
       flex: 1 1 auto;
       max-width: 220px;
-      transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+      transition: background 0.35s cubic-bezier(.4, 0, .2, 1), box-shadow 0.35s cubic-bezier(.4, 0, .2, 1), transform 0.22s cubic-bezier(.4, 0, .2, 1), filter 0.22s cubic-bezier(.4, 0, .2, 1);
       white-space: nowrap;
       text-align: center;
       background: linear-gradient(45deg, #4B0082, #9162c4);
@@ -171,10 +182,11 @@
     .rsvp-button:hover,
     .rsvp-button:focus {
       background-color: #9162c4;
-      transform: scale(1.05);
-      background: linear-gradient(45deg, #9162c4, #4B0082);
-      box-shadow: 0 0 16px 4px #FFD70099, 0 0 4px 1px #fffbe6;
+      transform: scale(1.09);
+      background: linear-gradient(45deg, #9162c4 60%, #4B0082 100%);
+      box-shadow: 0 0 24px 8px #FFD70055, 0 0 8px 2px #fffbe6;
       outline: none;
+      filter: brightness(1.10) saturate(1.18);
     }
 
 
@@ -186,7 +198,9 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(3px);
+      transition: background 0.3s;
       justify-content: center;
       align-items: center;
     }
@@ -319,59 +333,6 @@
         border-radius: 22px;
       }
     }
-      .bells-img {
-        max-width: 110px;
-      }
-
-      .images-wrapper {
-        height: 130px;
-      }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      text-align: left;
-    }
-
-    .modal-content h2 {
-      margin-top: 0;
-      font-family: 'Great Vibes', cursive;
-      color: #B8860B;
-    }
-
-    .modal-content input,
-    .modal-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1.5px solid #444;
-      background: #fff;
-      color: #222;
-    }
-
-    .close {
-      float: right;
-      font-size: 1.5em;
-      cursor: pointer;
-    }
 
     @media (max-width: 600px) {
       .rsvp-buttons {
@@ -392,13 +353,27 @@
     @media (max-width: 600px) {
       .container {
         max-width: 100vw;
-        padding: 32px 2vw 12px 2vw;
-        margin: 64px auto 4px auto;
+        padding: 20px 4vw 16px 4vw;
+        margin: 44px auto 4px auto;
         box-sizing: border-box;
         background-size: cover;
         background-position: center center;
         border-radius: 16px;
         border-width: 2px;
+      }
+
+      .rsvp-buttons {
+        flex-wrap: nowrap;
+      }
+
+      .rsvp-button {
+        width: 50%;
+        flex: none;
+        font-size: 1em;
+        padding: 12px 4px;
+        min-width: 0;
+        max-width: none;
+        white-space: normal;
       }
     }
   </style>
