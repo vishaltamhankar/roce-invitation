@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
   <meta property="og:title" content="Rohan's Roce Invitation" />
   <meta property="og:description" content="You're invited to celebrate with us on 12th Dec 2025" />
+  <link rel="icon" type="image/jpeg" href="Coconuts.jpg">
   <style>
     body {
       margin: 0;
@@ -408,103 +409,97 @@
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <p style="margin-top: 0; font-size:28px; font-family: 'Lora', serif;"><b>You are invited to the roce ceremony
-          of</b></p>
-      <!-- <p>are delighted to invite you to the roce of their son</p> -->
-      <h1>Rohan Coelho</h1>
-    </header>
-    <section>
-      <h2>Venue:</h2>
-      <h3>Upper Deck Sky Lounge<br> Haware Centurion Mall, Seawoods East <br> Navi Mumbai</h3>
-      <h3>Friday, 12 Dec 2025</h3>
-      <h3>Time: 07:00 PM</h3>
-
-    </section>
-    <div class="rsvp-buttons">
-      <button class="rsvp-button" onclick="openModal('Yes')" aria-label="RSVP Yes, I will attend">Will attend</button>
-      <button class="rsvp-button" onclick="openModal('No')" aria-label="RSVP No, I will not attend">Will not
-        attend</button>
-      <div id="rsvpModal" class="modal" aria-modal="true" role="dialog">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal()" aria-label="Close RSVP form">&times;</span>
-          <h2>RSVP</h2>
-          <form id="rsvpForm">
-            <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" />
-            <input type="email" name="email" placeholder="E-mail (optional)" aria-label="E-mail (optional)" />
-            <div id="guestContainer">
-              <input type="number" name="guests" id="guestsField" placeholder="Number of Guests"
-                aria-label="Number of Guests" />
-            </div>
-            <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number" />
-            <textarea name="message" placeholder="Message (optional)" aria-label="Message (optional)"></textarea>
-            <input type="hidden" name="attending" id="attendingField" value="" />
-            <input type="text" name="honeypot" class="honeypot" autocomplete="off" style="display:none;">
-            <button type="submit" class="rsvp-button">Submit</button>
-          </form>
-          <p id="responseMsg" style="color: #4B0082; font-weight: bold;"></p>
+  <main id="main-content" tabindex="-1" aria-label="Invitation Content">
+    <div class="container" role="region" aria-label="Invitation Card">
+      <header>
+        <p style="margin-top: 0; font-size:28px; font-family: 'Lora', serif;"><b>You are invited to the roce ceremony
+            of</b></p>
+        <h1>Rohan Coelho</h1>
+      </header>
+      <section aria-labelledby="venue-heading">
+        <h2 id="venue-heading">Venue:</h2>
+        <h3>Upper Deck Sky Lounge<br> Haware Centurion Mall, Seawoods East <br> Navi Mumbai</h3>
+        <h3>Friday, 12 Dec 2025</h3>
+        <h3>Time: 07:00 PM</h3>
+      </section>
+      <div class="rsvp-buttons" role="group" aria-label="RSVP Options">
+        <button class="rsvp-button" onclick="openModal('Yes')" aria-label="RSVP Yes, I will attend">Will attend</button>
+        <button class="rsvp-button" onclick="openModal('No')" aria-label="RSVP No, I will not attend">Will not
+          attend</button>
+        <div id="rsvpModal" class="modal" aria-modal="true" role="dialog">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()" aria-label="Close RSVP form">&times;</span>
+            <h2>RSVP</h2>
+            <form id="rsvpForm">
+              <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" />
+              <input type="email" name="email" placeholder="E-mail (optional)" aria-label="E-mail (optional)" />
+              <div id="guestContainer">
+                <input type="number" name="guests" id="guestsField" placeholder="Number of Guests"
+                  aria-label="Number of Guests" />
+              </div>
+              <input type="tel" name="phone" placeholder="Phone Number" required aria-label="Phone Number" />
+              <textarea name="message" placeholder="Message (optional)" aria-label="Message (optional)"></textarea>
+              <input type="hidden" name="attending" id="attendingField" value="" />
+              <input type="text" name="honeypot" class="honeypot" autocomplete="off" style="display:none;">
+              <button type="submit" class="rsvp-button">Submit</button>
+            </form>
+            <p id="responseMsg" style="color: #4B0082; font-weight: bold;"></p>
+          </div>
         </div>
       </div>
-
-      <script>
-        function openModal(attendingStatus) {
-          document.getElementById('attendingField').value = attendingStatus;
-          const guestContainer = document.getElementById('guestContainer');
-          const guestsField = document.getElementById('guestsField');
-
-          if (attendingStatus === 'Yes') {
-            guestContainer.style.display = 'block';
-            guestsField.required = true;
-          } else {
-            guestContainer.style.display = 'none';
-            guestsField.required = false;
-            guestsField.value = '';
-          }
-          document.getElementById('rsvpModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-          document.getElementById('rsvpModal').style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-          const modal = document.getElementById('rsvpModal');
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
-        }
-
-        document.getElementById('rsvpForm').addEventListener('submit', function (e) {
-          e.preventDefault();
-          const form = e.target;
-          const data = {
-            name: form.name.value,
-            email: form.email ? form.email.value : "",
-            phone: form.phone.value,
-            guests: form.guests ? form.guests.value : "",
-            message: form.message.value,
-            attending: form.attending.value
-          };
-
-          fetch("https://script.google.com/macros/s/AKfycbw9IZlkLtLT478nxi-0hmxyftJfXlhB52Wps2uirnmz1Kp8vyhqpe_NCTSXk5wtGzqsAw/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          });
-
-          document.getElementById('responseMsg').textContent = "RSVP submitted!";
-          form.reset();
-          closeModal();
-          setTimeout(() => {
-            document.getElementById('responseMsg').textContent = "";
-          }, 2500);
-        });
-      </script>
     </div>
+  </main>
+  <script>
+    function openModal(attendingStatus) {
+      document.getElementById('attendingField').value = attendingStatus;
+      const guestContainer = document.getElementById('guestContainer');
+      const guestsField = document.getElementById('guestsField');
+      if (attendingStatus === 'Yes') {
+        guestContainer.style.display = 'block';
+        guestsField.required = true;
+      } else {
+        guestContainer.style.display = 'none';
+        guestsField.required = false;
+        guestsField.value = '';
+      }
+      document.getElementById('rsvpModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('rsvpModal').style.display = 'none';
+    }
+    window.onclick = function (event) {
+      const modal = document.getElementById('rsvpModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+    document.getElementById('rsvpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email ? form.email.value : "",
+        phone: form.phone.value,
+        guests: form.guests ? form.guests.value : "",
+        message: form.message.value,
+        attending: form.attending.value
+      };
+      fetch("https://script.google.com/macros/s/AKfycbw9IZlkLtLT478nxi-0hmxyftJfXlhB52Wps2uirnmz1Kp8vyhqpe_NCTSXk5wtGzqsAw/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      document.getElementById('responseMsg').textContent = "RSVP submitted!";
+      form.reset();
+      closeModal();
+      setTimeout(() => {
+        document.getElementById('responseMsg').textContent = "";
+      }, 2500);
+    });
+  </script>
 </body>
 
 </html>
